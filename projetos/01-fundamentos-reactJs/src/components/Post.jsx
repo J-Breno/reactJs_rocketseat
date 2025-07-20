@@ -6,7 +6,9 @@ import ptBR from "date-fns/locale/pt-BR";
 import { useState } from "react";
 
 export function Post({ author, publishedAt, content }) {
-  const [comments, setComments] = useState([1, 2]);
+  const [comments, setComments] = useState(["Post muito bacana"]);
+
+  const [newCommentText, setNewCommentText] = useState("");
 
   const publishedDateFormated = format(
     publishedAt,
@@ -23,7 +25,12 @@ export function Post({ author, publishedAt, content }) {
 
   function handleCreateNewComment() {
     event.preventDefault();
-    setComments([...comments, comments.length + 1]);
+    setComments([...comments, newCommentText]);
+    setNewCommentText("");
+  }
+
+  function handleNewCommentChandle() {
+    setNewCommentText(event.target.value);
   }
 
   return (
@@ -58,14 +65,19 @@ export function Post({ author, publishedAt, content }) {
       </div>
       <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe o seu comentário</strong>
-        <textarea placeholder="Deixe um comentário" />
+        <textarea
+          name="comment"
+          value={newCommentText}
+          placeholder="Deixe um comentário"
+          onChange={handleNewCommentChandle}
+        />
         <footer>
           <button type="submit">Comentar</button>
         </footer>
       </form>
       <div className={styles.commentList}>
-        {comments.map(() => {
-          return <Comment />;
+        {comments.map((comment) => {
+          return <Comment content={comment} />;
         })}
       </div>
     </article>
