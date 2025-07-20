@@ -1,7 +1,17 @@
 # React
 
-### para instalar biblioteca de icons no react, podemos utilizar o phospor icons
+### biblioteca de icons no react
 
-#### instalação
-
+#### instalação do phosphor icons
+```
 npm i phosphor-react
+```
+
+
+### Biblioteca para trabalhar com datas
+
+#### instalação do date-fns
+
+```
+npm i date-fns
+```

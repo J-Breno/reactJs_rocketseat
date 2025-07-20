@@ -21,7 +21,7 @@ const posts = [
       },
       { type: "link", content: "👉 jane.design/doctorcare" },
     ],
-    publisehdAt: new Date("2025-07-20 03:43:15"),
+    publishedAt: new Date("2025-07-19T22:51:12"),
   },
   {
     id: 2,
@@ -39,7 +39,7 @@ const posts = [
       },
       { type: "link", content: "👉 jane.design/doctorcare" },
     ],
-    publisehdAt: new Date("2025-07-22 03:43:15"),
+    publishedAt: new Date("2025-07-19T22:51:12"),
   },
 ];
 
@@ -55,7 +55,7 @@ function App() {
               key={post.id}
               author={post.author}
               content={post.content}
-              publisehdAt={post.publisehdAt}
+              publishedAt={post.publishedAt}
             />
           ))}
         </main>
