@@ -15,3 +15,7 @@ npm i phosphor-react
 ```
 npm i date-fns
 ```
+
+### Imutabilidade
+
+criar um novo valor na mémoria
