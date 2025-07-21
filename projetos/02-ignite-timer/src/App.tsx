@@ -13,7 +13,7 @@ export function App() {
       <Button />
       <GlobalStyles />
     </ThemeProvider>
-  )
+  );
 }
 
 export default App;
