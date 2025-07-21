@@ -6,6 +6,7 @@ import ptBR from "date-fns/locale/pt-BR";
 import { useState } from "react";
 
 export function Post({ author, publishedAt, content }) {
+
   const [comments, setComments] = useState(["Post muito bacana"]);
 
   const [newCommentText, setNewCommentText] = useState("");
@@ -23,6 +24,8 @@ export function Post({ author, publishedAt, content }) {
     addSuffix: true,
   });
 
+  const isNewCommentEmpty = newCommentText.length === 0;
+
   function handleCreateNewComment() {
     event.preventDefault();
     setComments([...comments, newCommentText]);
@@ -30,11 +33,16 @@ export function Post({ author, publishedAt, content }) {
   }
 
   function handleNewCommentChandle() {
+    event.target.setCustomValidity("");
     setNewCommentText(event.target.value);
   }
 
+  function handleNewCommentInvalid() {
+    event.target.setCustomValidity("Esse campo é obrigatório");
+  }
+
   function deleteComment(commentToDelete) {
-    const commentsWithoutDeletedOne = comments.filter(comment => {
+    const commentsWithoutDeletedOne = comments.filter((comment) => {
       return comment !== commentToDelete;
     });
 
@@ -78,14 +86,24 @@ export function Post({ author, publishedAt, content }) {
           value={newCommentText}
           placeholder="Deixe um comentário"
           onChange={handleNewCommentChandle}
+          onInvalid={handleNewCommentInvalid}
+          required
         />
         <footer>
-          <button type="submit">Comentar</button>
+          <button disabled={isNewCommentEmpty} type="submit">
+            Comentar
+          </button>
         </footer>
       </form>
       <div className={styles.commentList}>
         {comments.map((comment) => {
-          return <Comment onDeleteComment={deleteComment} key={comment} content={comment} />;
+          return (
+            <Comment
+              onDeleteComment={deleteComment}
+              key={comment}
+              content={comment}
+            />
+          );
         })}
       </div>
     </article>
