@@ -4,10 +4,7 @@ import { Header } from "./components/Header.tsx";
 import { Sidebar } from "./components/Sidebar.tsx";
 import { Post, type PostType } from "./components/Post.tsx";
 
-
-
 const posts: PostType[] = [
-
   {
     id: 1,
     author: {
@@ -54,10 +51,7 @@ function App() {
         <Sidebar />
         <main>
           {posts.map((post) => (
-            <Post
-              key={post.id}
-              post={post}
-            />
+            <Post key={post.id} post={post} />
           ))}
         </main>
       </div>
