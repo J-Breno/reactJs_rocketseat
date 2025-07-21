@@ -2,9 +2,12 @@ import "./global.css";
 import styles from "./App.module.css";
 import { Header } from "./components/Header.tsx";
 import { Sidebar } from "./components/Sidebar.tsx";
-import { Post } from "./components/Post.tsx";
+import { Post, type PostType } from "./components/Post.tsx";
 
-const posts = [
+
+
+const posts: PostType[] = [
+
   {
     id: 1,
     author: {
@@ -53,9 +56,7 @@ function App() {
           {posts.map((post) => (
             <Post
               key={post.id}
-              author={post.author}
-              content={post.content}
-              publishedAt={post.publishedAt}
+              post={post}
             />
           ))}
         </main>
