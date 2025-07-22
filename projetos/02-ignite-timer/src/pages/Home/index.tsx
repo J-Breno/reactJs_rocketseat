@@ -14,6 +14,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as zod from "zod";
 import { useEffect, useState } from "react";
 import { differenceInSeconds } from "date-fns";
+import { NewCycleForm } from "./components/NewCycleForm";
+import { Countdown } from "./components/Countdown";
 
 const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, "Informe a tarefa"),
@@ -133,38 +135,9 @@ export function Home() {
     <>
       <HomeContainer>
         <form onSubmit={handleSubmit(handleCreateNewCycle)} action="">
-          <FormContainer>
-            <label htmlFor="task">Vou trabalhar em</label>
-            <TaskInput
-              id="task"
-              list="task-suggestions"
-              placeholder="dê um nome para o seu projeto"
-              disabled={!!activeCycle}
-              {...register("task")}
-            />
-            <datalist id="task-suggestions">
-              <option value="Projeto 1" />
-            </datalist>
-            <label htmlFor="minutesAmount">durante</label>
-            <MinutesAmoutInput
-              type="number"
-              id="minutesAmount"
-              placeholder="00"
-              step={5}
-              min={1}
-              max={60}
-              disabled={!!activeCycle}
-              {...register("minutesAmount", { valueAsNumber: true })}
-            />
-            <span>minutos.</span>
-          </FormContainer>
-          <CountDownContainer>
-            <span>{minutes[0]}</span>
-            <span>{minutes[1]}</span>
-            <Separator>:</Separator>
-            <span>{seconds[0]}</span>
-            <span>{seconds[1]}</span>
-          </CountDownContainer>
+          <NewCycleForm />
+          <Countdown />
+          
           {activeCycle ? (
             <StopCountdownButton onClick={handleInterruptCycle} type="button">
               <HandPalm size={24} />
