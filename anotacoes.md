@@ -52,3 +52,15 @@ npx eslint src --ext .ts, .tsx --fix
 ```
 npm i react-router-dom
 ```
+### React hook form
+#### instalação
+
+```
+npm i react-hook-form
+```
+#### Zod para validação de formulário
+
+```
+npm i zod
+npm i @hookform/resolvers
+```
