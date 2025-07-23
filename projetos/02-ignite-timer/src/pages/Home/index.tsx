@@ -4,15 +4,29 @@ import {
   StartCountdownButton,
   StopCountdownButton,
 } from "./styles";
-import { createContext, useEffect, useState } from "react";
-import { differenceInSeconds } from "date-fns";
+import { createContext, useState } from "react";
 import { NewCycleForm } from "./components/NewCycleForm";
 import { Countdown } from "./components/Countdown";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as zod from "zod";
+import { FormProvider, useForm } from "react-hook-form";
+
+const newCycleFormValidationSchema = zod.object({
+  task: zod.string().min(1, "Informe a tarefa"),
+  minutesAmount: zod
+    .number()
+    .min(1, "O intervalo precisa ser de no mínimo 5 minutos")
+    .max(60, "O intervalo precisa ser de no máximo 60 minutos"),
+});
+
+type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>;
 
 interface CycleContextType {
   activeCycle: Cycle | undefined;
   activeCycleId: string | null;
+  amountSecondsPassed: number;
   markCurrentCycleAsFinished: () => void;
+  setSecondsPassed: (seconds: number) => void;
 }
 
 export const CycleContext = createContext({} as CycleContextType);
@@ -31,6 +45,17 @@ export function Home() {
   const [activeCycleId, setActiveCycleId] = useState<string | null>(null);
 
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId);
+  const [amountSecondsPassed, setAmountSecondsPassed] = useState(0);
+
+  const newCycleForm = useForm<NewCycleFormData>({
+    resolver: zodResolver(newCycleFormValidationSchema),
+    defaultValues: {
+      task: "",
+      minutesAmount: 0,
+    },
+  });
+
+  const { handleSubmit, watch, reset } = newCycleForm;
 
   function handleCreateNewCycle(data: NewCycleFormData) {
     const id = String(new Date().getTime());
@@ -46,6 +71,10 @@ export function Home() {
     setAmountSecondsPassed(0);
 
     reset();
+  }
+
+  function setSecondsPassed(seconds: number) {
+    setAmountSecondsPassed(seconds);
   }
 
   function markCurrentCycleAsFinished() {
@@ -80,8 +109,18 @@ export function Home() {
     <>
       <HomeContainer>
         <form onSubmit={handleSubmit(handleCreateNewCycle)} action="">
-          <CycleContext.Provider value={{ activeCycle, activeCycleId, markCurrentCycleAsFinished }}>
-            <NewCycleForm />
+          <CycleContext.Provider
+            value={{
+              activeCycle,
+              activeCycleId,
+              amountSecondsPassed,
+              markCurrentCycleAsFinished,
+              setSecondsPassed
+            }}
+          >
+            <FormProvider {...newCycleForm}>
+              <NewCycleForm />
+            </FormProvider>
             <Countdown />
           </CycleContext.Provider>
 
