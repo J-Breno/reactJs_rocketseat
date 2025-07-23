@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { HistoryContainer, HistoryList, Status } from "./styles";
+import { CycleContext } from "../../Context/CycleContext";
 
 export function History() {
+  const { cycles } = useContext(CycleContext);
   return (
     <>
       <HistoryContainer>
@@ -59,7 +62,7 @@ export function History() {
             </tbody>
           </table>
         </HistoryList>
-        </HistoryContainer>
+      </HistoryContainer>
     </>
   );
 }
