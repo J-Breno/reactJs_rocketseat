@@ -33,9 +33,9 @@ export function TransactionsProvider({ children }: TransactionsProps) {
   }, []);
   return (
     <>
-      <TransactionContext.Provider value={{ transactions }}>
+      <TransactionsContext.Provider value={{ transactions }}>
         {children}
-      </TransactionContext.Provider>
+      </TransactionsContext.Provider>
     </>
   );
 }
