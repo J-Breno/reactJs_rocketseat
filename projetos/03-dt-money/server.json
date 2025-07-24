@@ -3,7 +3,7 @@
         {
             "id": 1,
             "description": "Desenvolvimento de site",
-            "type": "Income",
+            "type": "income",
             "category": "venda",
             "price": 14000,
             "createdAt": "2025-07-24T22:02:07.643Z"
@@ -11,7 +11,7 @@
         {
             "id": 2,
             "description": "Hamburger",
-            "type": "Outcome",
+            "type": "outcome",
             "category": "Alimentação",
             "price": 50,
             "createdAt": "2025-07-24T22:19:57.643Z"
