@@ -84,12 +84,11 @@ export function NewTransactionModal() {
                   onValueChange={field.onChange}
                   value={field.value}
                 >
-                  <TransactionType>
-                    <TransactionTypeButton variant="income" value="income">
-                      <ArrowCircleUp size={24} />
-                      Entrada
-                    </TransactionTypeButton>
-                  </TransactionType>
+                  <TransactionTypeButton variant="income" value="income">
+                    <ArrowCircleUp size={24} />
+                    Entrada
+                  </TransactionTypeButton>
+
                   <TransactionTypeButton variant="outcome" value="outcome">
                     <ArrowCircleDown size={24} />
                     Saída
