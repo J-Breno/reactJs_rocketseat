@@ -64,3 +64,49 @@ npm i react-hook-form
 npm i zod
 npm i @hookform/resolvers
 ```
+### instalação do immer
+
+```
+npm i immer
+```
+
+### instalação do radix-ui
+```
+npm i @radix-ui/react-dialog
+```
+
+### Instalação do radix-ui radio group
+
+```
+npm install @radix-ui/react-radio-group
+```
+### Instalação do JSON-SERVER
+
+```
+npm i json-server -D
+npx json-server server.json -w
+```
+
+### instalação shadcn ui
+
+```
+
+pnpm dlx shadcn@latest init
+```
+### instalação react helmet async
+
+```
+pnpm add react-helmet-async
+```
+
+### instalação do Sonner para notificações
+
+```
+pnpm i sonner
+```
+
+### instalação da biblioteca recharts para gráficos
+
+```
+pnpm i reacharts
+```
